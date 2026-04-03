@@ -1,9 +1,9 @@
 #include "funcoes.h"
 
-void binario_para_vetor(int bin, int *vet[8])
+void binario_para_vetor(int bin, int vet[8])
 {
     for (int i = 7; i >= 0; i--) {
-        *vet[i] = bin % 10;
+        vet[i] = bin % 10;
         bin = bin / 10;
     }
 }
@@ -17,6 +17,19 @@ int vetor_para_binario(int vet[8])
     return bin;
 }
 
+/*Função complementa A1 (inverte os valores do vetor)*/
+void inverte_valor(int vet[8])
+{
+    for (int i = 0; i < 8; i++) {
+        //vet[i] = !vet[i];
+        
+        if(vet[i] == 1)
+            vet[i] = 0;
+        else
+            vet[i] = 1;
+    }
+}
+/*
 void converte_A2(int *vet, int *dec){
 
-}
+}*/
