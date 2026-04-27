@@ -4,15 +4,10 @@
     {
       "label": "build C project",
       "type": "shell",
-      "command": "gcc",
+      "command": "cmd",
       "args": [
-        "-Wall",
-        "-Wextra",
-        "-g3",
-        "main.c",
-        "funcoes.c",
-        "-o",
-        "output/main.exe"
+        "/c",
+        "gcc -Wall -Wextra -g3 *.c -o output/main.exe"
       ],
       "group": {
         "kind": "build",

@@ -1,0 +1,12 @@
+{
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "files.associations": {
+    "*.h": "c"
+  },
+  "c-cpp-compile-run.output-location": "${workspaceFolder}/output",
+  "c-cpp-compile-run.additional-include-paths": [
+    "${workspaceFolder}"
+  ],
+  "c-cpp-compile-run.c-linker-flags": "\"${workspaceFolder}/funcoes.c\""
+}
