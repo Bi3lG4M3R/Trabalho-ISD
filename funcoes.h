@@ -1,6 +1,14 @@
 #ifndef FUNCOES_H
 #define FUNCOES_H
 
+
+void print_vetor(int vet[8]){
+    for (int i = 0; i < 8; i++) {
+        printf("%d ", vet[i]);
+    }
+    printf("\n");
+}
+
 /*  Função montada para transformar o numero binario da variavel inteiro
     em um vetor, distribuido os numeros em cada posicao do vetor */
 void binario_para_vetor(int bin, int vet[8]);
