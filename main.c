@@ -1,8 +1,17 @@
+/*
+10011001
++
+00100100
+-
+00000011
+-1
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "funcoes.h"
 
+#define MAX 8
 /*
 a fazer, completar numeros a esquerda com 0,
 
@@ -12,76 +21,93 @@ encerra o programa se detectar o -1 em qualquer scanf
 
 */
 
+/* é lido todos os valores de entrada, são guardados, e então são exibidos com as respectivas conversões e é feito os cálculos. 
+Todos o processo só funciona para números binários de 8 bits */
 int main(void){
-
+    int vet1[MAX],vet2[MAX],vet3[MAX],vet4[MAX],vet5[MAX], bin;
     char operador1, operador2;
-
-    /*  Variaveis para os numeros binarios  */
-    int bin1, bin2, bin3, bin_final;
-    int vet_bin1[8], vet_bin2[8], vet_bin3[8], vet_bin_final[8];
     
-    /*  Variaveis para os numeros decimais*/
-    int deci1, deci2, deci3, deci_final;
 
-    /*  Variaveis para os numeros hexadecimais*/
-    char hex1[3], hex2[3], hex3[3], hex_final[3];
+    while(1){
+        printf("Digite o primeiro numero binario (ou -1 para sair): ");
+        scanf("%d", &bin);
 
-    /*  Leitura do primeiro binario  */
-	printf("Insira o primeiro numero binario: ");
-	scanf("%d", &bin1);
+        if(bin == -1){
+            printf("Programa encerrado\n");
+            break;
+        }
 
-    binario_para_vetor(bin1, vet_bin1);
+        binario_vetor(bin,vet1);
 
-    print_vetor(vet_bin1);
+        printf("Digite a operacao (+ ou -): ");
+        scanf(" %c",&operador1);
 
-    inverte_valor(vet_bin1);
+        printf("Digite o segundo numero binario: ");
+        scanf("%d", &bin);
 
-    print_vetor(vet_bin1);
+        binario_vetor(bin,vet2);
 
-    /*printf("Insira o operador: ");
-    scanf(" %c", &operador);*/
+        //Primeira operacao
+        if (operador1 == '+'){
+            soma_binarios(vet1,vet2,vet4);
+        }
+        else if (operador1 == '-'){
+            subtracao_binarios(vet1,vet2,vet4);
+        }
+        else{
+            printf("Operador invalido!\n");
+            continue;
+        }
 
-    /*  Leitura do segundo binario  */
-	printf("Insira o segundo numero binario: ");
-	scanf("%d", &bin2);
+        printf("Digite a operacao (+ ou -): ");
+        scanf(" %c",&operador2);
+        
+        printf("Digite o terceiro numero binario: ");
+        scanf("%d",&bin);
+        binario_vetor(bin,vet3);
 
-    printf("Primeiro numero binario: %d\n", bin1);
-    bin1 = vetor_para_binario(vet_bin1);
-    printf("Primeiro numero binario invertido: %d\n", bin1);
-    printf("Segundo numero binario: %d\n", bin2);
+        //Segunda operacao
+        if (operador2 == '+'){
+            soma_binarios(vet4,vet3,vet5);
+        }
+        else if (operador2 == '-'){
+            subtracao_binarios(vet4,vet3,vet5);
+        }
+        else{
+            printf("Operador invalido!\n");
+            continue;
+        }
 
-    /*******************************************************************
-     *                           Testes
-     * 
-     *            Separação dos testes de do corpo do programa
-     * 
-     *                      Sequencia do programa
-    *********************************************************************/
-    /*
-    // Le o primeiro numero binario
-    scanf("%d", &bin1);
+        //saida formatada
+        printf("\nResultado:\n");        
+        
+        escreve_vetor(vet1);
+        printf("b (%di ",binario_decimal_sinal(vet1));
+        binario_hexadecimal(vet1);
+        printf("h)\n");
 
-    // Le o primeiro operador
-    scanf(" %c", &operador1);
+        printf("%c\n",operador1);
+        
+        escreve_vetor(vet2);
+        printf("b (%di ",binario_decimal_sinal(vet2));
+        binario_hexadecimal(vet2);
+        printf("h)\n");
 
-    // Le o segundo numero binario
-    scanf("%d", &bin2);
+        printf("%c\n",operador2);
 
-    // Le o terceiro numero binario
-    scanf("%d", &bin3);
+        escreve_vetor(vet3);
+        printf("b (%di ",binario_decimal_sinal(vet3));
+        binario_hexadecimal(vet3);
+        printf("h)\n");
 
-    // Le o segundo operador
-    scanf(" %c", &operador2);
+        printf("=\n");
+
+        escreve_vetor(vet5);
+        printf("b (%di ",binario_decimal_sinal(vet5));
+        binario_hexadecimal(vet5);
+        printf("h)\n");
+
+    }
     
-    //Processa os numeros binarios preparando os para as operacoes
-    binario_para_vetor(bin1, vet_bin1);
-    binario_para_vetor(bin2, vet_bin2);
-    binario_para_vetor(bin3, vet_bin3);
-
-    //Impressao dos resultados
-    print_vetor(vet_bin1);
-    printf("b");
-
-    */
-	return 0;
+    return 0;
 }

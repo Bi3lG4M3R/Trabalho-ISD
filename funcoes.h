@@ -1,23 +1,16 @@
 #ifndef FUNCOES_H
 #define FUNCOES_H
 
+#define MAX 8
 
-void print_vetor(int vet[8]){
-    for (int i = 0; i < 8; i++) {
-        printf("%d ", vet[i]);
-    }
-    printf("\n");
-}
 
-/*  Função montada para transformar o numero binario da variavel inteiro
-    em um vetor, distribuido os numeros em cada posicao do vetor */
-void binario_para_vetor(int bin, int vet[8]);
+void print_vetor(int vet[MAX]);
 
-/*  Função montada para transformar o vetor do numero binario
- em um numero inteiro */
-int vetor_para_binario(int vet[8]);
+int potencia (int x, int n);
 
-/*  Função montada para inverter os valores do vetor */
-void inverte_valor(int vet[8]);
+void escreve_vetor (int *vet);
+
+void binario_vetor (int bin,int *vet);
+
 
 #endif
