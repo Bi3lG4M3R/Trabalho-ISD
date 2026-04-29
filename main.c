@@ -24,90 +24,109 @@ encerra o programa se detectar o -1 em qualquer scanf
 /* é lido todos os valores de entrada, são guardados, e então são exibidos com as respectivas conversões e é feito os cálculos. 
 Todos o processo só funciona para números binários de 8 bits */
 int main(void){
-    int vet1[MAX],vet2[MAX],vet3[MAX],vet4[MAX],vet5[MAX], bin;
+    int input1[MAX], input2[MAX], input3[MAX],vet4[MAX],vet5[MAX], num;
     char operador1, operador2;
     
-
-    while(1){
+    do{
         printf("Digite o primeiro numero binario (ou -1 para sair): ");
-        scanf("%d", &bin);
+        scanf("%d", &num);
 
-        if(bin == -1){
-            printf("Programa encerrado\n");
-            break;
-        }
+        /* verificardor primeiro numero */
+        if(num != -1){
+            
+            binario_vetor(num,input1);
 
-        binario_vetor(bin,vet1);
+            do{
+                printf("Digite a operacao (+ ou -): ");
+                scanf(" %c",&operador1);
+                if(operador1 != '+' && operador1 != '-'){
+                    printf("Operador invalido! Digite novamente.\n");
+                }
+            }while(operador1 != '+' && operador1 != '-');
 
-        printf("Digite a operacao (+ ou -): ");
-        scanf(" %c",&operador1);
+            printf("Digite o segundo numero binario: ");
+            scanf("%d", &num);
 
-        printf("Digite o segundo numero binario: ");
-        scanf("%d", &bin);
+            /* verificardor segundo numero */
+            if (num != -1){
+                
 
-        binario_vetor(bin,vet2);
+                binario_vetor(num,input2);
 
-        //Primeira operacao
-        if (operador1 == '+'){
-            soma_binarios(vet1,vet2,vet4);
-        }
-        else if (operador1 == '-'){
-            subtracao_binarios(vet1,vet2,vet4);
-        }
-        else{
-            printf("Operador invalido!\n");
-            continue;
-        }
+                //Primeira operacao
+                
+                if(operador1 == '+')
+                    soma_binarios(input1,input2,vet4);
+                   
+                if(operador1 == '-')
+                        subtracao_binarios(input1,input2,vet4);
+                
+                
 
-        printf("Digite a operacao (+ ou -): ");
-        scanf(" %c",&operador2);
+                do{
+                    printf("Digite a operacao (+ ou -): ");
+                    scanf(" %c",&operador1);
+                    if(operador1 != '+' && operador1 != '-'){
+                        printf("Operador invalido! Digite novamente.\n");
+                }
+            }while(operador1 != '+' && operador1 != '-');
+                
+                printf("Digite o terceiro numero binario: ");
+                scanf("%d",&num);
+                binario_vetor(num,input3);
+
+                //Segunda operacao
+                if (operador2 == '+'){
+                    soma_binarios(vet4,input3,vet5);
+                }
+                else if (operador2 == '-'){
+                    subtracao_binarios(vet4,input3,vet5);
+                }
+                else{
+                    printf("Operador invalido!\n");
+                    continue;
+                }
+
+                //saida formatada
+                printf("\nResultado:\n");        
+                
+                escreve_vetor(input1);
+                printf("b (%di ",binario_decimal_sinal(input1));
+                binario_hexadecimal(input1);
+                printf("h)\n");
+
+                printf("%c\n",operador1);
+                
+                escreve_vetor(input2);
+                printf("b (%di ",binario_decimal_sinal(input2));
+                binario_hexadecimal(input2);
+                printf("h)\n");
+
+                printf("%c\n",operador2);
+
+                escreve_vetor(input3);
+                printf("b (%di ",binario_decimal_sinal(input3));
+                binario_hexadecimal(input3);
+                printf("h)\n");
+
+                printf("=\n");
+
+                escreve_vetor(vet5);
+                printf("b (%di ",binario_decimal_sinal(vet5));
+                binario_hexadecimal(vet5);
+                printf("h)\n");
+
+            }/*fecha segundo verificador de -1*/
+
+            
+
+        } /*fecha primeiro verificador de -1*/
+
         
-        printf("Digite o terceiro numero binario: ");
-        scanf("%d",&bin);
-        binario_vetor(bin,vet3);
 
-        //Segunda operacao
-        if (operador2 == '+'){
-            soma_binarios(vet4,vet3,vet5);
-        }
-        else if (operador2 == '-'){
-            subtracao_binarios(vet4,vet3,vet5);
-        }
-        else{
-            printf("Operador invalido!\n");
-            continue;
-        }
-
-        //saida formatada
-        printf("\nResultado:\n");        
-        
-        escreve_vetor(vet1);
-        printf("b (%di ",binario_decimal_sinal(vet1));
-        binario_hexadecimal(vet1);
-        printf("h)\n");
-
-        printf("%c\n",operador1);
-        
-        escreve_vetor(vet2);
-        printf("b (%di ",binario_decimal_sinal(vet2));
-        binario_hexadecimal(vet2);
-        printf("h)\n");
-
-        printf("%c\n",operador2);
-
-        escreve_vetor(vet3);
-        printf("b (%di ",binario_decimal_sinal(vet3));
-        binario_hexadecimal(vet3);
-        printf("h)\n");
-
-        printf("=\n");
-
-        escreve_vetor(vet5);
-        printf("b (%di ",binario_decimal_sinal(vet5));
-        binario_hexadecimal(vet5);
-        printf("h)\n");
-
-    }
+    }while(num != -1);
     
+    printf("Programa encerrado\n");
+
     return 0;
 }
