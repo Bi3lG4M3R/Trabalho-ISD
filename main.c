@@ -62,7 +62,7 @@ int main(void){
                 
                 inteiro_para_binario(num,input2);
 
-                //Primeira operacao
+                /* Primeira operacao */
                 
                 if(operador1 == '+')
                     soma_binarios(input1, input2, firstResult);
@@ -85,7 +85,7 @@ int main(void){
                 if(num != -1){
                     inteiro_para_binario(num, input3);
 
-                    //Segunda operacao
+                    /* Segunda operacao */
                     if (operador2 == '+')
                         soma_binarios(firstResult, input3, finalResult);
                     
@@ -93,7 +93,7 @@ int main(void){
                         subtracao_binarios(firstResult, input3, finalResult);
                     
                 
-                    //saida formatada
+                    /* saida formatada */
                     printf("\nResultado:\n");        
                     
                     /* imprime primeiro numero inserido */
