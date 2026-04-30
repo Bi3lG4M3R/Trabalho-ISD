@@ -152,22 +152,29 @@ void soma_binarios (int *vet1, int *vet2, int *resultado){
 /* Dado dois vetores de binarios validos e na respectiva ordem, e um terceiro vetor resultado, é feito vetor1 - vetor2 == resultado, 
 onde em caso de "emprestimo" é retornado até o valor 1 em vet1 e depois pega todos os zeros e converte em 1. Complexidade O(n)*/
 void subtracao_binarios (int *vet1, int *vet2, int *resultado){
-    int i = 7,j, aux[MAX];
+    int i, aux[MAX];
+
     for(i=0;i<8;i++){
-        aux[i] = vet1[i];
-    }
-    for(i = 7; i>= 0; i--){
-        resultado[i] = aux[i] - vet2[i];
-
-        if (resultado[i] == -1){
-            j = i - 1;
-
-            while (aux[j] != 1){
-                aux[j] = 1;
-                j--;
-            }
-            aux[j] = 0;
-            resultado[i] = 1;
+    	if (vet2[i] == 0){
+    		aux[i] = 1;
+        }else{
+		   aux[i] = 0;
         }
-    }
+	}
+
+	if(aux[7] == 0)
+	    aux[7] = 1;
+
+	else{
+		aux[7] = 0;
+		i = 6;
+		while(aux[i] == 1 && i>=0){
+			aux[i] = 0;
+			i--;
+		}
+		if (i >= 0){
+			aux[i] = 1;
+		}
+	}
+	soma_binarios(vet1,aux,resultado);   
 }
