@@ -24,12 +24,13 @@ void print_vetor (int *vet){
 }
 
 /* Converte um número binario inteiro de 8 bits sem sinal em um vetor com todos os zeros a esquerda já prontos. Complexidade O(n) */
-void inteiro_para_binario (int num,int *vet){
+void inteiro_para_binario (int num, int *vet){
     int i = 7;
+    
     while(num > 0){
-        vet[i] = num % 2;
+        vet[i] = num % 10;
         i--;
-        num = num / 2;
+        num = num / 10;
     }
 
     if (i != -1){

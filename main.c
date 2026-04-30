@@ -44,7 +44,7 @@ int main(void){
         /* verificardor primeiro numero */
         if(num != -1){
             
-            inteiro_para_binario(num,input1);
+            inteiro_para_binario(num, input1);
 
             do{
                 printf("Digite a operacao desejada (+ ou -): ");
