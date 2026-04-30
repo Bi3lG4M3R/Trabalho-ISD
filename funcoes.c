@@ -3,14 +3,6 @@
 #include "funcoes.h"
 
 #define MAX 8
-/* DEBUG FUNCTION */
-void print_vetor(int vet[8]){
-    for (int i = 0; i < 8; i++) {
-        printf("%d ", vet[i]);
-    }
-    printf("\n");
-}
-
 
 /* Função com complexidade O(n). Ele calcula o valor de x elevado a n, multiplicando x n vezes */
 int potencia (int x, int n){
@@ -24,21 +16,22 @@ int potencia (int x, int n){
 }
 
 /* Escreve o vetor de 8 bits. Complexidade O(n) */
-void escreve_vetor (int *vet){
+void print_vetor (int *vet){
     int i;
-    for (i = 0;i<8;i++){
+    for(i = 0;i<8;i++){
         printf("%d",vet[i]);
     }
 }
 
 /* Converte um número binario inteiro de 8 bits sem sinal em um vetor com todos os zeros a esquerda já prontos. Complexidade O(n) */
-void binario_vetor (int bin,int *vet){
+void inteiro_para_binario (int num,int *vet){
     int i = 7;
-    while(bin > 0){
-        vet[i] = bin % 10;
+    while(num > 0){
+        vet[i] = num % 2;
         i--;
-        bin = bin / 10;
+        num = num / 2;
     }
+
     if (i != -1){
         while(i > -1){
             vet[i] = 0;
@@ -49,24 +42,24 @@ void binario_vetor (int bin,int *vet){
 
 /* Dado um vetor com os números binários, ele converte para o decimal equivalente. Para auxiliar na conversão para hexadecimal, 
 será informado o inicio e o fim do intervalo. Complexidade O(n) */
-int binario_decimal (int *vetor,int inicio, int fim){
-    int r,i,p=0;
-    r = 0;
+int binario_para_decimal (int *vetor,int inicio, int fim){
+    int num, i, p=0;
+    num = 0;
     for(i = fim; i >= inicio; i--){
         if (vetor[i] != 0){
-            r = r + potencia(2,p);
+            num = num + potencia(2,p);
         }
         p++;
     }
-    return r;
+    return num;
 }
 
 /* Dado um vetor com os bits de um binario é identificado se ele representa um negativo ou um positivo, 
 e assim é convertido para o valor equivalente. Complexidade O(n) */
-int binario_decimal_sinal (int *vetor){
+int binario_para_decimal_sinal (int *vetor){
     int i, vetor2[MAX];
     if (vetor[0] == 0){
-        return binario_decimal(vetor,0,7);
+        return binario_para_decimal(vetor,0,7);
     }
     else{
         for(i=0;i<8;i++){
@@ -77,16 +70,16 @@ int binario_decimal_sinal (int *vetor){
                 vetor2[i] = 0;
             }
         }
-        return (binario_decimal(vetor2,0,7) + 1) * -1;
+        return (binario_para_decimal(vetor2, 0, 7) + 1) * -1;
     }
 }
 
 /* Dado o vetor com binario, ele é dividido em 2 partes (0 a 3 e 4 a 7) e cada parte é convertida para o valor em hexadecimal equivalente
 Complexidade O(n) */
-void binario_hexadecimal (int *vetor){
+void binario_para_hexadecimal (int *vetor){
     int r1, r2;
-    r1 = binario_decimal(vetor, 0,3);
-    r2 = binario_decimal(vetor,4,7);
+    r1 = binario_para_decimal(vetor, 0,3);
+    r2 = binario_para_decimal(vetor,4,7);
     switch(r1){
         case 10:
             printf("A");
@@ -147,6 +140,7 @@ void soma_binarios (int *vet1, int *vet2, int *resultado){
             num = 1;    
             resultado[i] = resultado[i] - 2;
         }
+
         if (resultado[i] == 3){
             num = 1;
             resultado[i] = resultado[i] - 2;
@@ -163,8 +157,10 @@ void subtracao_binarios (int *vet1, int *vet2, int *resultado){
     }
     for(i = 7; i>= 0; i--){
         resultado[i] = aux[i] - vet2[i];
+
         if (resultado[i] == -1){
             j = i - 1;
+
             while (aux[j] != 1){
                 aux[j] = 1;
                 j--;

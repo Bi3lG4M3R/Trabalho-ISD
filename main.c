@@ -1,4 +1,14 @@
-/*
+/*************************************************** 
+        TRABALHO ISD 
+
+    MEMBROS DO GRUPO:
+    - Gabriel Richard Zambianchi de Oliveira
+    - Ismaelda Silva Machado de Albuquerque
+    - Gustavo Basso dos Santos
+
+***************************************************/
+
+/* entrada padrão para teste:
 10011001
 +
 00100100
@@ -24,7 +34,7 @@ encerra o programa se detectar o -1 em qualquer scanf
 /* é lido todos os valores de entrada, são guardados, e então são exibidos com as respectivas conversões e é feito os cálculos. 
 Todos o processo só funciona para números binários de 8 bits */
 int main(void){
-    int input1[MAX], input2[MAX], input3[MAX],firstResult[MAX],vet5[MAX], num;
+    int input1[MAX], input2[MAX], input3[MAX],firstResult[MAX],finalResult[MAX], num;
     char operador1, operador2;
     
     do{
@@ -34,7 +44,7 @@ int main(void){
         /* verificardor primeiro numero */
         if(num != -1){
             
-            binario_vetor(num,input1);
+            inteiro_para_binario(num,input1);
 
             do{
                 printf("Digite a operacao desejada (+ ou -): ");
@@ -50,15 +60,15 @@ int main(void){
             /* verificardor segundo numero */
             if (num != -1){
                 
-                binario_vetor(num,input2);
+                inteiro_para_binario(num,input2);
 
                 //Primeira operacao
                 
                 if(operador1 == '+')
-                    soma_binarios(input1,input2,firstResult);
+                    soma_binarios(input1, input2, firstResult);
                    
                 if(operador1 == '-')
-                    subtracao_binarios(input1,input2,firstResult);
+                    subtracao_binarios(input1, input2, firstResult);
                 
                 do{
                     printf("Digite a operacao desejada (+ ou -): ");
@@ -73,46 +83,46 @@ int main(void){
                 scanf("%d",&num);
 
                 if(num != -1){
-                    binario_vetor(num,input3);
+                    inteiro_para_binario(num, input3);
 
                     //Segunda operacao
                     if (operador2 == '+')
-                        soma_binarios(firstResult,input3,vet5);
+                        soma_binarios(firstResult, input3, finalResult);
                     
                     if(operador2 == '-')
-                        subtracao_binarios(firstResult,input3,vet5);
+                        subtracao_binarios(firstResult, input3, finalResult);
                     
                 
                     //saida formatada
                     printf("\nResultado:\n");        
                     
                     /* imprime primeiro numero inserido */
-                    escreve_vetor(input1);
-                    printf("b (%di ",binario_decimal_sinal(input1));
-                    binario_hexadecimal(input1);
+                    print_vetor(input1);
+                    printf("b (%di ",binario_para_decimal_sinal(input1));
+                    binario_para_hexadecimal(input1);
                     printf("h)\n");
 
                     printf("%c\n",operador1);
                     
                     /* imprime segundo numero inserido */
-                    escreve_vetor(input2);
-                    printf("b (%di ",binario_decimal_sinal(input2));
-                    binario_hexadecimal(input2);
+                    print_vetor(input2);
+                    printf("b (%di ",binario_para_decimal_sinal(input2));
+                    binario_para_hexadecimal(input2);
                     printf("h)\n");
 
                     printf("%c\n",operador2);
 
                     /* imprime terceiro numero inserido */
-                    escreve_vetor(input3);
-                    printf("b (%di ",binario_decimal_sinal(input3));
-                    binario_hexadecimal(input3);
+                    print_vetor(input3);
+                    printf("b (%di ",binario_para_decimal_sinal(input3));
+                    binario_para_hexadecimal(input3);
                     printf("h)\n");
 
                     printf("=\n");
 
-                    escreve_vetor(vet5);
-                    printf("b (%di ",binario_decimal_sinal(vet5));
-                    binario_hexadecimal(vet5);
+                    print_vetor(finalResult);
+                    printf("b (%di ",binario_para_decimal_sinal(finalResult));
+                    binario_para_hexadecimal(finalResult);
                     printf("h)\n");
 
 
