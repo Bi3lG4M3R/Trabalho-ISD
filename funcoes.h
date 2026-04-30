@@ -3,9 +3,6 @@
 
 #define MAX 8
 
-
-void print_vetor (int vet[MAX]);
-
 int potencia (int x, int n);
 
 void print_vetor (int *vet);
